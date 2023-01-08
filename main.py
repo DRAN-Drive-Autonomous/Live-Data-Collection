@@ -55,7 +55,7 @@ def keysToOutput(keys):
 
 def writeData(count, output):
     data["filename"].append(f"{count:07d}.png")
-    data["keys"].append(output)
+    # data["keys"].append(output)
     data["W"].append(output[0])
     data["A"].append(output[1])
     data["S"].append(output[2])
@@ -82,19 +82,19 @@ def main():
     paused = False
     while True:
         if not paused:
-            screen = grab_screen(region=(0,40,800,630))
+            screen = grab_screen(region=(0,0,1920,1080))
             keys = key_check()
             output = keysToOutput(keys)
             writeData(count, output)
             cv2.imwrite(f"./dataset/images/{count:07d}.png",cv2.cvtColor(screen, cv2.COLOR_RGB2BGR))
             timeL.append(time.time()-last_time)
             last_time = time.time()
-            cv2.imshow('window2',cv2.cvtColor(screen, cv2.COLOR_RGB2BGR))
-            if cv2.waitKey(25) & 0xFF == ord('q'):
-                cv2.destroyAllWindows()
-                df = pd.DataFrame(data)
-                df.to_csv(filename, mode="w", header=True, index=False)
-                break
+            # cv2.imshow('window2',cv2.cvtColor(screen, cv2.COLOR_RGB2BGR))
+            # if cv2.waitKey(25) & 0xFF == ord('q'):
+            #     cv2.destroyAllWindows()
+            #     df = pd.DataFrame(data)
+            #     df.to_csv(filename, mode="w", header=True, index=False)
+            #     break
             if count % 100 == 0:
                 df = pd.DataFrame(data)
                 df.to_csv(filename, mode="w", header=True, index=False)
@@ -102,6 +102,13 @@ def main():
             count += 1
 
         keys = key_check()
+
+        if 'Q' in keys:
+            # cv2.destroyAllWindows()
+            df = pd.DataFrame(data)
+            df.to_csv(filename, mode="w", header=True, index=False)
+            break
+
         if 'T' in keys:
             if paused:
                 paused = False

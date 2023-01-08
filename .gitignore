@@ -20,4 +20,4 @@
 .env.test.local
 .env.production.local
 .idea/
-.pycharm/
+__pycache__/
