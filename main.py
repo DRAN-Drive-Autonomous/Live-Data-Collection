@@ -27,7 +27,7 @@ if os.path.exists(filename):
     print("Data found")
     print(len(data["filename"]))
 else:
-    data = {"filename":[], "keys":[], "W": [], "A":[], "S":[], "D":[], "WA":[], "WD":[], "SA":[], "SD":[], "Space":[], "NoKey":[]}
+    data = {"filename":[], "W": [], "A":[], "S":[], "D":[], "WA":[], "WD":[], "SA":[], "SD":[], "Space":[], "NoKey":[]}
 
 def keysToOutput(keys):
     output = [0,0,0,0,0,0,0,0,0,0]
