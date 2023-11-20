@@ -12,6 +12,7 @@
 *.zip
 *.tar.gz
 *.rar
+*.npz
 
 # Miscellaneous
 .DS_Store
